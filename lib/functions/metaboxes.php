@@ -30,39 +30,39 @@ function jb_create_metaboxes( $meta_boxes ) {
         'show_names' => true, // Show field names on the left
         'fields' => array(
             array(
-                'name' => 'First Name',
+                'name' => 'Author(s)',
                 'desc' => '',
-                'id' => $prefix . 'first_name_text',
+                'id' => $prefix . 'author_name_text',
                 'type' => 'text'
             ),
             array(
-                'name' => 'Last Name',
+                'name' => 'Recipe Title',
                 'desc' => '',
-                'id' => $prefix . 'last_name_text',
+                'id' => $prefix . 'recipe_title_text',
                 'type' => 'text'
             ),
             array(
-                'name' => 'Title',
-                'desc' => 'MCEDC Position title.',
-                'id' => $prefix . 'title_text',
+                'name' => 'Learning Goals',
+                'desc' => 'What are the expected learning outcomes?',
+                'id' => $prefix . 'learning_goals_text',
                 'type' => 'text'
             ),
             array(
-                'name' => 'Phone Number',
-                'desc' => 'Direct dial number.',
-                'id' => $prefix . 'phone_number_text',
+                'name' => 'Context',
+                'desc' => 'When would you use this recipe?',
+                'id' => $prefix . 'context_text',
                 'type' => 'text'
             ),
             array(
-                'name' => 'e-mail Address',
-                'desc' => 'Corporate e-mail address.',
-                'id' => $prefix . 'email_address_text',
+                'name' => 'Ingredients',
+                'desc' => '',
+                'id' => $prefix . 'ingredients_text',
                 'type' => 'text'
             ),
             array(
-                'name' => 'Business Information',
-                'desc' => 'Enter business information for Executive Officers and members of the Executive Committee.',
-                'id' => $prefix . 'business_info_wysiwig',
+                'name' => 'Method',
+                'desc' => 'Give a step-by-step description of implementation.',
+                'id' => $prefix . 'method_wysiwig',
                 'type' => 'wysiwyg',
 				'options' => array(
                     'wpautop' => true, // use wpautop?
@@ -71,17 +71,11 @@ function jb_create_metaboxes( $meta_boxes ) {
                 ),
             ),
             array(
-                'name' => 'Role',
+                'name' => 'Area',
                 'desc' => '',
-                'id' => $prefix . 'role_taxonomy_select',
-                'taxonomy' => 'role', //Enter Taxonomy Slug
+                'id' => $prefix . 'area_taxonomy_select',
+                'taxonomy' => 'area', //Enter Taxonomy Slug
                 'type' => 'taxonomy_select',    
-            ),
-            array(
-                'name' => 'Order',
-                'desc' => 'Used to order the list of staff.',
-                'id' => $prefix . 'order_text',
-                'type' => 'text'
             ),
         ),
     );
@@ -97,7 +91,7 @@ add_filter( 'cmb_meta_boxes' , 'jb_create_metaboxes' );
  * see /lib/metabox/example-functions.php for more information
  *
  */
-function mcedc_initialize_cmb_meta_boxes() {
+function jb_initialize_cmb_meta_boxes() {
     if ( !class_exists( 'cmb_Meta_Box' ) ) {
         require_once( get_stylesheet_directory() . '/lib/metabox/init.php' );
     }

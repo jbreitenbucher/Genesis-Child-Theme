@@ -24,7 +24,7 @@ function jb_remove_menus_by_role () {
     global $current_user;
     $user_roles = $current_user->roles;
     $user_role = array_shift($user_roles);
-    if($user_role == 'xxx') {
+    if($user_role == 'author') {
         $restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'), __('Pages'), __('Appearance'), __('Tools'), __('Users'), __('Settings'), __('Comments'), __('Plugins'));
         end ($menu);
         while (prev($menu)){

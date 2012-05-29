@@ -34,7 +34,7 @@ function jb_theme_setup() {
     add_action( 'admin_init', 'jb_register_settings' );
     add_action( 'admin_menu', 'jb_add_menu', 100);
     add_action( 'admin_notices', 'jb_notices' );
-    add_action( 'genesis_settings_sanitizer_init', 'jb_staff_sanitization_filters' );
+    add_action( 'genesis_settings_sanitizer_init', 'jb_recipe_sanitization_filters' );
     
     // Unregister layout setting
     genesis_unregister_layout( 'sidebar-content' );
