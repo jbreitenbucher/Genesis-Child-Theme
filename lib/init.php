@@ -16,6 +16,7 @@ define( 'JB_SETTINGS_FIELD', 'jb-settings' );
 require_once( get_stylesheet_directory() . '/lib/admin/admin.php' );
 
 // Functions
+require_once( get_stylesheet_directory() . '/bp/bp-functions.php' );
 require_once( get_stylesheet_directory() . '/lib/functions/general.php' );
 require_once( get_stylesheet_directory() . '/lib/functions/post-types.php' );
 require_once( get_stylesheet_directory() . '/lib/functions/taxonomies.php' );
