@@ -57,6 +57,9 @@ function jb_theme_setup() {
 
 	/** Add support for custom background */
 	add_custom_background();
+	
+	/** Add support for BBPress */
+	add_theme_support( 'bbpress' );
 
 	/** Add support for custom header */
 	add_theme_support( 'genesis-custom-header', array( 'width' => 960, 'height' => 100 ) );
