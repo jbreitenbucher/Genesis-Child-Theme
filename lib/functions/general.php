@@ -304,7 +304,7 @@ add_action( 'admin_menu', 'jb_remove_custom_taxonomy' );
 
 function jb_save_new_title($recipe_title) {
       if ($_POST['post_type'] == 'recipe') :
-           $rtitle = $_POST['recipe_title_text'];
+           $rtitle = $_POST['jb_recipe_title_text'];
            $recipe_title = $rtitle;
       endif;
       return $recipe_title;
