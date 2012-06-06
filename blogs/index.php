@@ -1,4 +1,26 @@
-<?php get_header() ?>
+<?php
+/**
+ * @package       3d-nitle-innovation
+ * @author        Orthogonal Creations <jon@breitenbucher.net>
+ * @copyright     Copyright (c) 2012, NITLE
+ * @license       http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ *
+ */
+
+/**
+ * Loop Setup
+ *
+ * This setup function attaches all of the loop-specific functions 
+ * to the correct hooks and filters. All the functions themselves
+ * are defined below this setup function.
+ *
+ */
+ 
+remove_action('genesis_loop', 'genesis_do_loop');
+add_action('genesis_loop', 'blogs_loop');
+ 
+function blogs_loop() {
+?>
 
 	<div id="container">
 		<div id="content">
@@ -50,6 +72,7 @@
 		</div><!-- #content -->
 	</div><!-- #container -->
 
-	<?php locate_template( array( 'sidebar.php' ), true ) ?>
-
-<?php get_footer() ?>
+<?php
+}
+genesis();
+?>

@@ -50,13 +50,24 @@ function jb_create_metaboxes( $meta_boxes ) {
             array(
                 'name' => 'Context',
                 'desc' => 'When would you use this recipe?',
-                'id' => $prefix . 'context_text',
-                'type' => 'text'
+                'id' => $prefix . 'context_wysiwyg',
+                'type' => 'wysiwyg',
+				'options' => array(
+                    'wpautop' => true, // use wpautop?
+                    'media_buttons' => false, // show insert/upload button(s)
+                    'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
+                ),
             ),
             array(
                 'name' => 'Ingredients',
-                'desc' => '',
+                'desc' => 'What does this recipe require?',
                 'id' => $prefix . 'ingredients_text',
+                'type' => 'text'
+            ),
+			array(
+                'name' => 'Tools',
+                'desc' => 'What software/hardware does this recipe require?',
+                'id' => $prefix . 'tools_text',
                 'type' => 'text'
             ),
             array(
@@ -70,12 +81,40 @@ function jb_create_metaboxes( $meta_boxes ) {
                     'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
                 ),
             ),
+			array(
+                'name' => 'Variations',
+                'desc' => 'What are some potential variations on your recipe?',
+                'id' => $prefix . 'variations_wysiwig',
+                'type' => 'wysiwyg',
+				'options' => array(
+                    'wpautop' => true, // use wpautop?
+                    'media_buttons' => false, // show insert/upload button(s)
+                    'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
+                ),
+            ),
+			array(
+                'name' => 'Pitfalls',
+                'desc' => 'What should people watch for when using this recipe?',
+                'id' => $prefix . 'pitfalls_wysiwig',
+                'type' => 'wysiwyg',
+				'options' => array(
+                    'wpautop' => true, // use wpautop?
+                    'media_buttons' => false, // show insert/upload button(s)
+                    'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
+                ),
+            ),
+			array(
+				'name' => 'Finished Example',
+				'desc' => 'Enter an URL or upload an image or PDF.',
+				'id'   => $prefix . 'example_file',
+				'type' => 'file',
+			),
             array(
                 'name' => 'Area',
-                'desc' => '',
-                'id' => $prefix . 'area_taxonomy_select',
+                'desc' => 'To which areas does this recipe belong?',
+                'id' => $prefix . 'area_taxonomy_multicheck',
                 'taxonomy' => 'area', //Enter Taxonomy Slug
-                'type' => 'taxonomy_select',    
+                'type' => 'taxonomy_multicheck',    
             ),
         ),
     );

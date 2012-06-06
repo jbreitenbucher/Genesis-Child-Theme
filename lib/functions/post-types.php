@@ -40,6 +40,7 @@ function jb_create_recipe_post_type() {
         'description' => 'A post type for entering recipe information.',
         'public' => true,
         'publicly_queryable' => true,
+		'exclude_from_search' => false,
         'show_ui' => true,
         'query_var' => true,
         'hierarchical' => false,

@@ -16,8 +16,8 @@
  *
  */
 
-add_action('genesis_before','3d_single_loop_setup');
-function 3d_single_loop_setup() {
+add_action('genesis_before','threed_single_loop_setup');
+function threed_single_loop_setup() {
     
     // Remove Before Loop
     remove_action('genesis_before_loop','genesis_do_before_loop' );
@@ -27,7 +27,7 @@ function 3d_single_loop_setup() {
     
     // Customize Post Content
     remove_action('genesis_post_content','genesis_do_post_content');
-    add_action('genesis_post_content','3d_recipe_post_content');
+    add_action('genesis_post_content','threed_recipe_post_content');
     
     // Remove Title, After Title, and Post Image
     remove_action('genesis_post_title', 'genesis_do_post_title');
@@ -40,7 +40,7 @@ function 3d_single_loop_setup() {
     // Customize After Endwhile
     remove_action('genesis_after_endwhile','genesis_do_after_endwhile');
     remove_action('genesis_after_endwhile', 'genesis_posts_nav');
-    add_action('genesis_after_endwhile', '3d_recipe_after_endwhile');
+    add_action('genesis_after_endwhile', 'threed_recipe_after_endwhile');
 }
 
 /**
@@ -49,8 +49,17 @@ function 3d_single_loop_setup() {
  * @author Orthogonal Creations
  */
 
-function 3d_recipe_post_content() {
+function threed_recipe_post_content() {
     global $post;
+		$tax = get_the_term_list($post->ID, 'area', '', ', ', '');
+		$context = genesis_get_custom_field('jb_context_wysiwyg');
+		$learning = genesis_get_custom_field('jb_learning_goals_text');
+		$ingredients = genesis_get_custom_field('jb_ingredients_text');
+		$tools = genesis_get_custom_field('jb_tools_text');
+		$method = genesis_get_custom_field('jb_method_wysiwig');
+		$variations = genesis_get_custom_field('jb_variations_wysiwig');
+		$pitfalls = genesis_get_custom_field('jb_pitfalls_wysiwig');
+		$example = genesis_get_custom_field('jb_example_file');
         printf('<h1 class="title">%s</h1> by <span class="author">%s</span>', genesis_get_custom_field('jb_recipe_title_text'), genesis_get_custom_field('jb_author_name_text') );
     echo '<div class="post-inner">';
         if ( has_post_thumbnail() ) {
@@ -59,44 +68,44 @@ function 3d_recipe_post_content() {
             echo '</div> <!--end .featured-image -->';
                 echo '<div class="recipe-content">';
 					echo '<h2>Area/Topic</h2>';
-						genesis_get_custom_field('jb_area_taxonomy_select');
+						echo $tax;
 					echo '<h2>Context</h2>';
-						genesis_get_custom_field('jb_context_wysiwyg');
+						echo $context;
 					echo '<h2>Learning Goals</h2>';
-						genesis_get_custom_field('jb_learning_goals_text');
+						echo $learning;
 					echo '<h2>Required Ingredients</h2>';
-						genesis_get_custom_field('jb_ingredients_text');
+						echo $ingredients;
 					echo '<h2>Required Tools</h2>';
-						genesis_get_custom_field('jb_tools_text');
+						echo $tools;
 					echo '<h2>Method</h2>';
-						genesis_get_custom_field('jb_method_wysiwig');
+						echo $method;
 					echo '<h2>Variations</h2>';
-						genesis_get_custom_field('jb_variations_wysiwig');
+						echo $variations;
 					echo '<h2>Pitfalls</h2>';
-						genesis_get_custom_field('jb_pitfalls_wysiwig');
+						echo $pitfalls;
 					echo '<h2>Example</h2>';
-						genesis_get_custom_field('jb_example_file');
+						echo $example;
                 echo '</div> <!--end .recipe-content -->';
         } else {
-            echo '<div class="recipe-content">';
+           	echo '<div class="recipe-content">';
 				echo '<h2>Area/Topic</h2>';
-					genesis_get_custom_field('jb_area_taxonomy_select');
+					echo $tax;
 				echo '<h2>Context</h2>';
-					genesis_get_custom_field('jb_context_wysiwyg');
+					echo $context;
 				echo '<h2>Learning Goals</h2>';
-					genesis_get_custom_field('jb_learning_goals_text');
+					echo $learning;
 				echo '<h2>Required Ingredients</h2>';
-					genesis_get_custom_field('jb_ingredients_text');
+					echo $ingredients;
 				echo '<h2>Required Tools</h2>';
-					genesis_get_custom_field('jb_tools_text');
+					echo $tools;
 				echo '<h2>Method</h2>';
-					genesis_get_custom_field('jb_method_wysiwig');
+					echo $method;
 				echo '<h2>Variations</h2>';
-					genesis_get_custom_field('jb_variations_wysiwig');
+					echo $variations;
 				echo '<h2>Pitfalls</h2>';
-					genesis_get_custom_field('jb_pitfalls_wysiwig');
+					echo $pitfalls;
 				echo '<h2>Example</h2>';
-					genesis_get_custom_field('jb_example_file');
+					echo $example;
             echo '</div> <!--end .recipe-content -->';
         }
 	echo '</div><!-- end .post-inner -->';
@@ -108,7 +117,7 @@ function 3d_recipe_post_content() {
  * @author Orthogonal Creations
  */
 
-function 3d_recipe_after_endwhile() {
+function threed_recipe_after_endwhile() {
     echo '<div class="navigation">';
         echo '<div class="alignleft">';
             previous_posts_link('&larr; Previous');

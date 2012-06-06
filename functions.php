@@ -26,8 +26,8 @@ function jb_theme_setup() {
     require_once( get_stylesheet_directory() . '/lib/init.php' );
     
     /** Child theme (do not remove) */
-    define( 'CHILD_THEME_NAME', 'Sample Child Theme' );
-	define( 'CHILD_THEME_URL', 'http://www.studiopress.com/themes/genesis' );
+    define( 'CHILD_THEME_NAME', '3D NITLE Innovation' );
+	define( 'CHILD_THEME_URL', 'http://3dtest.breitenbucher.net' );
     
     // Add support for theme options
     add_action( 'admin_init', 'jb_reset' );
@@ -46,8 +46,10 @@ function jb_theme_setup() {
     add_action( 'widgets_init', 'jb_remove_sidebars' );
     
     // Customize Header
-    //remove_action( 'genesis_header', 'genesis_do_header' );
-    //add_action( 'genesis_header', 'jb_header' );
+    //if ( is_home() || is_front_page() ) {
+        //remove_action( 'genesis_header', 'genesis_do_header' );
+        //add_action( 'genesis_header', 'jb_header' );
+    //} else {}
     
     // Add new featured image sizes
     add_image_size('slider', 588, 264, TRUE);
@@ -56,13 +58,13 @@ function jb_theme_setup() {
     add_image_size('profile-picture-single',150,146, TRUE);
 
 	/** Add support for custom background */
-	add_custom_background();
+	//add_custom_background();
 	
 	/** Add support for BBPress */
 	add_theme_support( 'bbpress' );
 
 	/** Add support for custom header */
-	add_theme_support( 'genesis-custom-header', array( 'width' => 960, 'height' => 100 ) );
+	//add_theme_support( 'genesis-custom-header', array( 'width' => 960, 'height' => 100 ) );
 
     
     // Add support for 3-column footer widgets
@@ -77,17 +79,22 @@ function jb_theme_setup() {
     // Register Sidebars
     genesis_register_sidebar( array(
         'id'            => 'home-left',
-        'name'          => __( 'Bottom Left Homepage' ),
-        'description'   => __( 'This is a featured section on the homepage.' ),
+        'name'          => __( 'Newest Recipe' ),
+        'description'   => __( 'This is the area to feature newest recipe.' ),
     ) );
     genesis_register_sidebar( array(
-        'id'            => 'home-middle',
-        'name'          => __( 'Bottom Middle Homepage' ),
-        'description'   => __( 'This is a featured section on the homepage.' ),
+        'id'            => 'home-center',
+        'name'          => __( 'Top Rated Recipe' ),
+        'description'   => __( 'This is the area to feature top rated recipe.' ),
     ) );
     genesis_register_sidebar( array(
         'id'            => 'home-right',
-        'name'          => __( 'Bottom Right Homepage' ),
-        'description'   => __( 'This is a featured section on the homepage.' ),
+        'name'          => __( 'Recipe of the Day' ),
+        'description'   => __( 'This is the area to feature an recipe of the day.' ),
+    ) );
+	genesis_register_sidebar( array(
+        'id'            => 'home-bottom',
+        'name'          => __( 'Featured Recipe' ),
+        'description'   => __( 'This is the area to feature a less popular recipe.' ),
     ) );
 }

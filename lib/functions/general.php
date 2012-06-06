@@ -25,7 +25,7 @@ function jb_remove_menus_by_role () {
     $user_roles = $current_user->roles;
     $user_role = array_shift($user_roles);
     if($user_role == 'author') {
-        $restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'), __('Pages'), __('Appearance'), __('Tools'), __('Users'), __('Settings'), __('Comments'), __('Plugins'));
+        $restricted = array(__('Dashboard'), __('Posts'), __('Media'), __('Links'), __('Pages'), __('Appearance'), __('Tools'), __('Users'), __('Settings'), __('Comments'), __('Plugins'), __('Genesis'), __('Forums'), __('Topics'), __('Replies'));
         end ($menu);
         while (prev($menu)){
             $value = explode(' ',$menu[key($menu)][0]);
@@ -66,7 +66,7 @@ add_filter( 'menu_order', 'jb_custom_menu_order' );
  *
  */
 
-function jb_add_areas_column_to_recipe_list( $posts_columns ) {
+function jb_add_area_column_to_recipe_list( $posts_columns ) {
     if (!isset($posts_columns['author'])) {
         $new_posts_columns = $posts_columns;
     } else {
@@ -293,10 +293,10 @@ function jb_remove_custom_taxonomy() {
 add_action( 'admin_menu', 'jb_remove_custom_taxonomy' );
 
 /**
- * Set the title from the first and last name for staff post type
+ * Set the title from a custom field in the data entry for the recipe post type
  *
- * @param $people_title
- * @return $people_title
+ * @param $recipe_title
+ * @return $recipe_title
  *
  * @author Jon Breitenbucher
  *
@@ -382,7 +382,7 @@ add_action('pre_get_posts', 'jb_no_child_posts');
  *
  */
 
-function mcedc_post_info_filter($post_info) {
+function jb_post_info_filter($post_info) {
 if (!is_page()) {
     $post_info = '[post_date] [post_edit]';
     return $post_info;
@@ -433,32 +433,31 @@ function jb_remove_sidebars() {
  */
 
 function jb_header() {
-    echo '<div id="header-left">';
-        echo '<div id="title-area">';
-            printf('<a id="box-link" href="%s"></a>', get_bloginfo('url'));
-            echo '</div><!-- end #title-area -->';
-    echo '</div><!-- end #header-left -->';
-
-    echo '<div id="header-right">';
-        echo '<div id="news" class="ribbon">';
-            printf('<a href="%s/category/%s"><img src="%s/images/news.png" /></a>', get_bloginfo('url'), genesis_get_option('mcedc_blog_cat', MCEDC_SETTINGS_FIELD ), get_stylesheet_directory_uri());
-        echo '</div><!-- end #news -->';
-    
         echo '<div id="search" class="widget widget_search">';
             echo '<div class="widget-wrap">';
-                echo '<form method="get" class="searchform" action="http://wpbeta.dev/mcedc/" >';
-                    echo '<input type="text" value="" name="s" class="s" onfocus="if (this.value == \'\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'\';}" />';
-                    echo '<input type="submit" class="searchsubmit" value="Search" />';
-                echo '</form>';
-                echo '<p class="contact"><a href="/contact" alt="contact">contact</a></p>';
-            echo '</div>';
+				echo '<form method="get" id="searchform" action="'. get_bloginfo('url') . '/">';
+				echo '<div><input type="text" name="s" id="s" class="s" value="What can we help you find?" onfocus="if(this.value==this.defaultValue)this.value=\'\';" onblur="if(this.value==\'\')this.value=this.defaultValue;"/>';
+				echo '<input type="submit" id="searchsubmit" value="Search" class="button" />';
+				echo '</div>';
+				echo '</form>';
+            echo '</div><!-- end .widget-wrap -->';
         echo '</div><!-- end #search -->';
-    
-        echo '<div id="social" class="social">';
-            echo '<a href="http://www.linkedin.com/in/' . genesis_get_option('mcedc_linkedin', MCEDC_SETTINGS_FIELD ) . '" alt="Linked In" class="linkedin"><img src="' . get_stylesheet_directory_uri() . '/images/linkedin-icon.png" /></a>';
-            echo '<a href="https://twitter.com/' . genesis_get_option('mcedc_twitter', MCEDC_SETTINGS_FIELD ) . '" alt="Twitter" class="twitter"><img src="' . get_stylesheet_directory_uri() . '/images/twitter-icon.png" /></a>';
-        echo '</div><!-- end #social -->';
-    echo '</div><!-- end #header-right -->';
+		//$args = array( 'taxonomy' => 'area' );
+
+		//$terms = get_terms('area', $args);
+
+		//$count = count($terms); $i=0;
+		//if ($count > 0) {
+		    //$term_list = '<p class="my_term-archive">';
+		    //foreach ($terms as $term) {
+		        //$i++;
+		    	//$term_list .= '<a href="/term-base/' . $term->slug . '" title="' . sprintf(__('View all post filed under %s', 'my_localization_domain'), $term->name) . '">' . $term->name . '</a>';
+		    	//if ($count < 4) $term_list .= ' &middot; '; else $term_list .= '</p>';
+		    //}
+			echo '<div class="suggestions">';
+		    	echo '<span class="suggestion-text">May we suggest:</span> information visualization, information evaluation, zotero, critically evaluating information';
+			echo '</div><!-- end .suggestions -->';
+		//}
 }
 
 /**

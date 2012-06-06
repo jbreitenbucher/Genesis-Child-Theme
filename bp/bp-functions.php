@@ -7,7 +7,7 @@ require_once( BP_PLUGIN_DIR . '/bp-themes/bp-default/_inc/ajax.php' );
 wp_enqueue_script( 'bp-js', BP_PLUGIN_URL . '/bp-themes/bp-default/_inc/global.js', array( 'jquery' ) );
 
 /* Add the wireframe BP page styles */
-wp_enqueue_style( 'bp-css', get_template_directory_uri() . '/bp/bp.css' );
+wp_enqueue_style( 'bp-css', get_stylesheet_directory_uri() . '/bp/bp.css' );
 
 /*****
  * Add support for showing the activity stream as the front page of the site
